@@ -1,10 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Book My Ticket</title>
+    <meta charset="UTF-8">
+    <title>Book My Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-top: 30px;
+        }
+
+        table {
+            margin: 30px auto;
+            border-collapse: collapse;
+            width: 60%;
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 20px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            font-weight: bold;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            font-weight: bold;
+        }
+
+        .auth-buttons {
+            background-color: #e2e3e5;
+        }
+
+        button {
+            margin: 5px;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-<h1>Book My Ticket</h1>
+
+    <a href="/"><h1>Book My Ticket</h1></a>
+
+    <table>
+        <tr th:if="${pass!=null}">
+            <td class="success" colspan="2" th:text="${pass}"></td>
+        </tr>
+        <tr th:if="${fail!=null}">
+            <td class="error" colspan="2" th:text="${fail}"></td>
+        </tr>
+
+        <tr th:if="${session.user==null}" class="auth-buttons">
+            <td><a href="/login"><button>Login</button></a></td>
+            <td><a href="/register"><button>Register</button></a></td>
+        </tr>
+
+        <tr th:if="${session.user}" class="auth-buttons">
+            <td colspan="2"><a href="/logout"><button>Logout</button></a></td>
+        </tr>
+    </table>
+
 </body>
 </html>

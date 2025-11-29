@@ -1,4 +1,5 @@
-package com.jpg.book_my_ticket.utli;
+package com.jpg.book_my_ticket.utli;  
+
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -21,7 +22,7 @@ public class AES {
 	private static final String SECRET_KEY = "pioqwbautwqnmsduoi";
 	private static final String SALTVALUE = "uasbnasddoiuqw";
 
-	public static String encrypt(String strToEncrypt) {
+	public static String encrypt1(Object object) {
 		try {
 			byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 			IvParameterSpec ivspec = new IvParameterSpec(iv);
@@ -31,7 +32,7 @@ public class AES {
 			SecretKeySpec secretKey = new SecretKeySpec(tmp.getEncoded(), "AES");
 			Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 			cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
-			return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes(StandardCharsets.UTF_8)));
+			return Base64.getEncoder().encodeToString(cipher.doFinal(((String) object).getBytes(StandardCharsets.UTF_8)));
 		} catch (InvalidAlgorithmParameterException | InvalidKeyException | NoSuchAlgorithmException
 				| InvalidKeySpecException | BadPaddingException | IllegalBlockSizeException
 				| NoSuchPaddingException e) {
@@ -59,8 +60,9 @@ public class AES {
 		return null;
 	}
 
-	public static String encrypt1(String password) {
+	public static String encrypt(Object password) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

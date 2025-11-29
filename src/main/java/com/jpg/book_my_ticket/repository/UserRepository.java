@@ -7,9 +7,10 @@ import com.jpg.book_my_ticket.entity.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	
-//	boolean existsByEmail(String email);
 
 	void deleteByRole(String string);
 
-	boolean existsByEmail1(String email);
+	boolean existsByEmail(String email);
+	
+	User findByEmail(String email);
 }
